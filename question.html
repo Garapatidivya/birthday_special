@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Do You Like Me? 😏</title>
+  <style>
+    body {
+      background: #fff3f7;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h2 {
+      font-size: 2.5em;
+      color: #ff1493;
+    }
+    .btn {
+      padding: 15px 25px;
+      margin: 20px;
+      font-size: 1.2em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <h2>Do you like me ? 💖</h2>
+  <button class="btn" onclick="yesClicked()">Yes 💘</button>
+  <button class="btn" onclick="noClicked()">No 🙈</button>
+
+  <script>
+    function yesClicked() {
+      window.location.href = "special.html";
+    }
+
+    function noClicked() {
+      alert("Niku option evvatle ammai 😎");
+      window.location.href = "question.html";
+    }
+  </script>
+</body>
+</html>

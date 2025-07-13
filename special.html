@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Special Note 💌</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffe0f0, #ffe9f7);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 2.8em;
+      color: #e91e63;
+      animation: pop 1.5s ease-in-out infinite alternate;
+    }
+    p {
+      font-size: 1.2em;
+      color: #444;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    img {
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+    }
+    .petal {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: url('https://pngimg.com/uploads/rose/rose_PNG649.png') no-repeat center;
+      background-size: contain;
+      animation: fall 10s linear infinite;
+      z-index: -1;
+    }
+    @keyframes pop {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+
+  <h1>💌 To My Dearest Divya 💐</h1>
+  <p>You are not just a name in my life, you're my heartbeat, my smile, and the sunshine in every moment.</p>
+  <p>I wish you all the happiness in the world because someone as amazing as you deserves nothing less 💖</p>
+  <p>I’m so lucky to know you. Happy Birthday, my special one!</p>
+  <a href="secret.html"><button class="btn">💌 I Have One More Secret</button></a>
+
+
+  <script>
+    // Rose Petals
+    for (let i = 0; i < 30; i++) {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDelay = Math.random() * 10 + "s";
+      document.body.appendChild(petal);
+    }
+
+    // Confetti
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let pieces = [];
+    for (let i = 0; i < 100; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 8 + 2,
+        speed: Math.random() * 3 + 1,
+        color: `hsl(${Math.random() * 360}, 100%, 50%)`
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of pieces) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      }
+    }
+
+    function update() {
+      for (let p of pieces) {
+        p.y += p.speed;
+        if (p.y > canvas.height) {
+          p.y = -10;
+          p.x = Math.random() * canvas.width;
+        }
+      }
+    }
+
+    function loop() {
+      draw();
+      update();
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+  </script>
+</body>
+</html>
